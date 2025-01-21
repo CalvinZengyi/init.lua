@@ -94,7 +94,7 @@ return{
                        }
                    }
                }
-           end
+           end,
         }
       })
     end
