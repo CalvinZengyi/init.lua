@@ -80,3 +80,7 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+-- Convinient key mappings for coding
+vim.keymap.set("i", "{<CR>", "{<CR>}<Esc>ko")
+vim.keymap.set("i", "(", "()<Esc>i")
