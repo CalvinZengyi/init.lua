@@ -19,6 +19,9 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
 
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)   -- go to definition
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)   -- find references
+
 vim.keymap.set("n", "<leader>vwm", function()
     require("vim-with-me").StartVimWithMe()
 end)

@@ -16,5 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = "yizeng.lazy",
-    change_detection = { notify = false }
+    change_detection = { notify = false },
+    config=function ()
+        vim.opt.fileencoding = "utf-8"
+    end
 })
