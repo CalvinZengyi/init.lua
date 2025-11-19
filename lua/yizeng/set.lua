@@ -3,6 +3,7 @@ vim.opt.nu = true
 vim.opt.encoding=utf8
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
+vim.lsp.enable({ "jdtls" })
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
