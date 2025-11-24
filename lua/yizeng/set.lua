@@ -30,13 +30,14 @@ vim.diagnostic.config({
 -- CursorHold event happens when after `updatetime` milliseconds. The
 -- default is 4000 which is much too long
 vim.cmd('autocmd CursorHold * lua vim.diagnostic.open_float()')
-vim.o.updatetime = 300
+vim.o.updatetime = 1300
 
 -- Show all diagnostics on current line in floating window
 vim.api.nvim_set_keymap(
-  'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>',
+  'n', '<Leader>D', ':lua vim.diagnostic.open_float()<CR>',
   { noremap = true, silent = true }
 )
+
 -- Go to next diagnostic (if there are multiple on the same line, only shows
 -- one at a time in the floating window)
 vim.api.nvim_set_keymap(

@@ -1,17 +1,17 @@
 vim.g.mapleader = " "
 
 -- back to normal mode
-vim.keymap.set({ "i", "c" }, "jk", "<esc>", { desc = "Back to normal mode" })
+vim.keymap.set({ "i", "c", "x" }, "jk", "<esc>", { desc = "Back to normal mode" })
 
 -- save file
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "Save file" })
 
 -- no arrow
 
-vim.keymap.set("n", "<Up>", "<Nop>")
-vim.keymap.set("n", "<Left>", "<Nop>")
-vim.keymap.set("n", "<Right>", "<Nop>")
-vim.keymap.set("n", "<Down>", "<Nop>")
+vim.keymap.set({ "i", "n" }, "<Up>", "<Nop>")
+vim.keymap.set({ "i", "n" }, "<Left>", "<Nop>")
+vim.keymap.set({ "i", "n" }, "<Right>", "<Nop>")
+vim.keymap.set({ "i", "n" }, "<Down>", "<Nop>")
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -37,9 +37,6 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
 
--- This is going to get me cancelled
-vim.keymap.set("i", "<C-c>", "<Esc>")
-
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
@@ -52,16 +49,9 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
-
 vim.keymap.set("n", "<leader>ea", 'oassert.NoError(err, "")<Esc>F";a')
 
-vim.keymap.set("n", "<leader>ef", 'oif err != nil {<CR>}<Esc>Olog.Fatalf("error: %s\\n", err.Error())<Esc>jj')
-
-vim.keymap.set("n", "<leader>el", 'oif err != nil {<CR>}<Esc>O.logger.Error("error", "error", err)<Esc>F.;i')
-
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>")
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/yizeng/lazy_init.lua<CR>")
 
 vim.keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
