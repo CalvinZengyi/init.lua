@@ -1,8 +1,8 @@
 vim.g.mapleader = " "
 
 -- back to normal mode
-vim.keymap.set({ "i", "c", "x" }, "jk", "<esc>", { desc = "Back to normal mode" })
-
+vim.keymap.set({ "i", "c", "t" }, "jk", "<esc>", { desc = "Back to normal mode" })
+vim.keymap.set("x", "<C-c>", "<esc>", { desc = "Back to normal mode under visual mode." })
 -- save file
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "Save file" })
 
@@ -54,5 +54,5 @@ vim.keymap.set("n", "<leader>ea", 'oassert.NoError(err, "")<Esc>F";a')
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/yizeng/lazy_init.lua<CR>")
 
 vim.keymap.set("n", "<leader><leader>", function()
-	vim.cmd("so")
+    vim.cmd("so")
 end)

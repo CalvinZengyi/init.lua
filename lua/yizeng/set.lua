@@ -19,6 +19,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
+vim.g.netrw_liststyle = 3
 -- diagnostic settings
 vim.diagnostic.config({
   virtual_text = false, -- Turn off inline diagnostics
