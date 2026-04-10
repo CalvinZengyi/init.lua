@@ -39,6 +39,7 @@ return {
             local cmp = require("cmp")
             local luasnip = require("luasnip")
             cmp.setup({
+                preselect = cmp.PreselectMode.None,
                 snippet = {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
@@ -50,7 +51,7 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
-                    { name = "buffer" },
+                    { name = "buffer", option = { keyword_length = 3 } },
                     { name = "path" },
                     { name = "luasnip" },
                 }),

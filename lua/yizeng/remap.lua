@@ -25,9 +25,9 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
 
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- go to definition
-vim.keymap.set("n", "gr", vim.lsp.buf.references, opts) -- find references
-vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts) -- go to implementations 
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+vim.keymap.set("n", "gr", vim.lsp.buf.references)
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
 
 vim.keymap.set('n', '<leader>rn', function()
     local orig = vim.lsp.handlers['textDocument/rename']

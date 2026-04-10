@@ -19,35 +19,35 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
-vim.g.netrw_liststyle = 3
 -- diagnostic settings
 vim.diagnostic.config({
-  virtual_text = false, -- Turn off inline diagnostics
+  virtual_text = false,
 })
 
--- Use this if you want it to automatically show all diagnostics on the
--- current line in a floating window. Personally, I find this a bit
--- distracting and prefer to manually trigger it (see below). The
--- CursorHold event happens when after `updatetime` milliseconds. The
--- default is 4000 which is much too long
-vim.cmd('autocmd CursorHold * lua vim.diagnostic.open_float()')
+-- Automatically show diagnostics in a floating window after cursor is idle,
+-- and close it when the cursor moves or the buffer is left
+local diag_win = nil
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    if diag_win and vim.api.nvim_win_is_valid(diag_win) then
+      vim.api.nvim_win_close(diag_win, true)
+    end
+    local _, win = vim.diagnostic.open_float()
+    diag_win = win
+  end,
+})
+vim.api.nvim_create_autocmd({ "CursorMoved", "BufLeave" }, {
+  callback = function()
+    if diag_win and vim.api.nvim_win_is_valid(diag_win) then
+      vim.api.nvim_win_close(diag_win, true)
+      diag_win = nil
+    end
+  end,
+})
 vim.o.updatetime = 1300
 
 -- Show all diagnostics on current line in floating window
-vim.api.nvim_set_keymap(
-  'n', '<Leader>D', ':lua vim.diagnostic.open_float()<CR>',
-  { noremap = true, silent = true }
-)
-
--- Go to next diagnostic (if there are multiple on the same line, only shows
--- one at a time in the floating window)
-vim.api.nvim_set_keymap(
-  'n', '<Leader>n', ':lua vim.diagnostic.goto_next()<CR>',
-  { noremap = true, silent = true }
-)
--- Go to prev diagnostic (if there are multiple on the same line, only shows
--- one at a time in the floating window)
-vim.api.nvim_set_keymap(
-  'n', '<Leader>p', ':lua vim.diagnostic.goto_prev()<CR>',
-  { noremap = true, silent = true }
-)
+vim.keymap.set('n', '<Leader>D', vim.diagnostic.open_float, { noremap = true, silent = true })
+-- Go to next/prev diagnostic
+vim.keymap.set('n', '<Leader>n', vim.diagnostic.goto_next, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>p', vim.diagnostic.goto_prev, { noremap = true, silent = true })
